@@ -1,0 +1,31 @@
+name: authify
+description: "A modular Firebase Authentication system built with Flutter and GetX."
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI
+  cupertino_icons: ^1.0.8
+  google_fonts: ^6.2.1
+
+  # State Management & Routing
+  get: ^4.6.6
+
+  # Firebase Core Services
+  firebase_core: ^3.4.0
+  firebase_auth: ^5.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
