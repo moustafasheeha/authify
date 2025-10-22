@@ -1,5 +1,7 @@
 import 'package:authify/core/bindings/auth_binding.dart';
 import 'package:authify/firebase_options.dart';
+import 'package:authify/routes/app_pages.dart';
+import 'package:authify/routes/app_routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialBinding: AuthBinding(),
+      initialRoute: AppRoutes.splash,
+      getPages: AppPages.routes,
       home: Scaffold(appBar: AppBar(title: const Text('Authify'))),
     );
   }
