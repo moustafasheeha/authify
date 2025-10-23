@@ -20,7 +20,6 @@ class MyApp extends StatelessWidget {
       initialBinding: AuthBinding(),
       initialRoute: AppRoutes.splash,
       getPages: AppPages.routes,
-      home: Scaffold(appBar: AppBar(title: const Text('Authify'))),
     );
   }
 }
