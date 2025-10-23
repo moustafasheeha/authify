@@ -7,25 +7,32 @@ environment:
   sdk: ^3.9.2
 
 dependencies:
-  flutter:
-    sdk: flutter
 
   # UI
   cupertino_icons: ^1.0.8
-  google_fonts: ^6.2.1
-
-  # State Management & Routing
-  get: ^4.6.6
+  firebase_auth: ^5.1.2
 
   # Firebase Core Services
   firebase_core: ^3.4.0
-  firebase_auth: ^5.1.2
-
-dev_dependencies:
-  flutter_test:
+  flutter:
     sdk: flutter
 
-  flutter_lints: ^5.0.0
+  # State Management & Routing
+  get: ^4.6.6
+  google_fonts: ^6.2.1
 
+dev_dependencies:
+  flutter_launcher_icons: ^0.14.4
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/logo.png"
 flutter:
   uses-material-design: true
+  assets:
+    - assets/
