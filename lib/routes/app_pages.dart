@@ -1,6 +1,6 @@
 import 'package:authify/core/bindings/splash_binding.dart';
 import 'package:authify/routes/app_routes.dart';
-import 'package:authify/views/Splash_view.dart';
+import 'package:authify/views/splash/splash_view.dart';
 import 'package:authify/views/home_view.dart';
 import 'package:authify/views/login_view.dart';
 import 'package:authify/views/register_view.dart';

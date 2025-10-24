@@ -9,13 +9,9 @@ class SplashController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    _animateLogo();
     Future.delayed(const Duration(seconds: 3), _navigateBasedOnAuthStatus);
   }
-void _animateLogo() async {
-    await Future.delayed(const Duration(milliseconds: 300));
-    opacity.value = 1.0; // يبدأ الأنيميشن
-  }
+
   Future<void> _navigateBasedOnAuthStatus() async {
     final user = FirebaseAuth.instance.currentUser;
 

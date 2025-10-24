@@ -26,11 +26,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 flutter_native_splash:
-  color: "#ffffff"
+  color: "#1565C0"
   image: assets/logo.png
+  android_gravity: center
 
   android_12:
-    color: "#ffffff"
+    color: "#1565C0"
     image: assets/logo.png
 flutter_launcher_icons:
   android: true
