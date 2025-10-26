@@ -1,4 +1,6 @@
+import 'package:authify/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({super.key, required this.title, this.onPressed});
@@ -26,16 +28,22 @@ class AuthButton extends StatelessWidget {
             ),
             borderRadius: BorderRadius.all(Radius.circular(14)),
           ),
-          child:  Center(
-            child: Text(
-              title,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-              ),
-            ),
-          ),
+          child: Obx(() {
+            return Center(
+              child: AuthController.to.isLoading.value
+                  ? const CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    )
+                  : Text(
+                      title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+            );
+          }),
         ),
       ),
     );

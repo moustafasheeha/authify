@@ -42,6 +42,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
         children: [
           AuthGreeting(isLogin: true),
@@ -68,15 +69,17 @@ class _LoginFormState extends State<LoginForm> {
           const SizedBox(height: 20),
           AuthButton(
             title: AppStrings.loginButton,
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                AuthController.to.signIn(
-                  email: emailController.text.trim(),
-                  password: passwordController.text.trim(),
-                );
-              }
-            },
-            ),
+            onPressed: AuthController.to.isLoading.value
+                ? null
+                : () {
+                    if (_formKey.currentState!.validate()) {
+                      AuthController.to.signIn(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim(),
+                      );
+                    }
+                  },
+          ),
           const SizedBox(height: 20),
           AuthSwitchRow(
             message: AppStrings.dontHaveAccount,
