@@ -17,10 +17,10 @@ class RegisterForm extends StatefulWidget {
 class _RegisterFormState extends State<RegisterForm> {
   bool hide = true;
 
+  late GlobalKey<FormState> _formKey;
   late TextEditingController emailController;
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
-  late GlobalKey<FormState> _formKey;
 
   @override
   void initState() {
@@ -29,6 +29,14 @@ class _RegisterFormState extends State<RegisterForm> {
     emailController = TextEditingController();
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
+  }
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    _formKey.currentState?.dispose();
+    super.dispose();
   }
 
   @override
