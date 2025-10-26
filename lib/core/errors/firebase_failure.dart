@@ -1,3 +1,5 @@
+import 'package:authify/core/constants/firebase_exception_codes.dart';
+import 'package:authify/core/constants/firebase_failure_strings.dart';
 import 'package:authify/core/errors/base_failure.dart';
 
 class FirebaseFailure extends BaseFailure {
@@ -5,45 +7,55 @@ class FirebaseFailure extends BaseFailure {
 
   factory FirebaseFailure.fromCode(String code, {String? message}) {
     switch (code) {
-      case 'email-already-in-use':
-        return const FirebaseFailure('This email is already registered.');
-      case 'invalid-email':
-        return const FirebaseFailure('The email address is not valid.');
-      case 'weak-password':
+      case FirebaseExceptionCodes.emailAlreadyInUse:
+        return const FirebaseFailure(FirebaseFailureStrings.emailInUse);
+
+      case FirebaseExceptionCodes.invalidEmail:
+        return const FirebaseFailure(FirebaseFailureStrings.invalidEmail);
+
+      case FirebaseExceptionCodes.weakPassword:
+        return const FirebaseFailure(FirebaseFailureStrings.weakPassword);
+
+      case FirebaseExceptionCodes.userNotFound:
+        return const FirebaseFailure(FirebaseFailureStrings.userNotFound);
+
+      case FirebaseExceptionCodes.wrongPassword:
+        return const FirebaseFailure(FirebaseFailureStrings.wrongPassword);
+
+      case FirebaseExceptionCodes.userDisabled:
+        return const FirebaseFailure(FirebaseFailureStrings.userDisabled);
+
+      case FirebaseExceptionCodes.tooManyRequests:
+        return const FirebaseFailure(FirebaseFailureStrings.tooManyRequests);
+
+      case FirebaseExceptionCodes.operationNotAllowed:
+        return const FirebaseFailure(FirebaseFailureStrings.operationNotAllowed);
+
+      case FirebaseExceptionCodes.networkRequestFailed:
+        return const FirebaseFailure(FirebaseFailureStrings.networkError);
+
+      case FirebaseExceptionCodes.invalidCredential:
+        return const FirebaseFailure(FirebaseFailureStrings.invalidCredential);
+
+      case FirebaseExceptionCodes.accountExistsWithDifferentCredential:
         return const FirebaseFailure(
-          'Password is too weak. Use at least 6 characters.',
+          FirebaseFailureStrings.accountExistsWithDifferentCredential,
         );
-      case 'user-not-found':
-        return const FirebaseFailure('No user found for that email.');
-      case 'wrong-password':
-        return const FirebaseFailure('Incorrect password. Please try again.');
-      case 'user-disabled':
-        return const FirebaseFailure('This user account has been disabled.');
-      case 'too-many-requests':
-        return const FirebaseFailure('Too many attempts. Try again later.');
-      case 'operation-not-allowed':
+
+      case FirebaseExceptionCodes.credentialAlreadyInUse:
         return const FirebaseFailure(
-          'This operation is not allowed. Contact support.',
+          FirebaseFailureStrings.credentialAlreadyInUse,
         );
-      case 'network-request-failed':
-        return const FirebaseFailure('Network error. Check your connection.');
-      case 'invalid-credential':
-        return const FirebaseFailure('Invalid credentials provided.');
-      case 'account-exists-with-different-credential':
-        return const FirebaseFailure(
-          'Account exists with different sign-in method.',
-        );
-      case 'credential-already-in-use':
-        return const FirebaseFailure(
-          'Credential already in use by another account.',
-        );
-      case 'requires-recent-login':
-        return const FirebaseFailure('Please re-authenticate and try again.');
-      case 'user-token-expired':
-        return const FirebaseFailure('Session expired. Please sign in again.');
+
+      case FirebaseExceptionCodes.requiresRecentLogin:
+        return const FirebaseFailure(FirebaseFailureStrings.requiresRecentLogin);
+
+      case FirebaseExceptionCodes.userTokenExpired:
+        return const FirebaseFailure(FirebaseFailureStrings.userTokenExpired);
+
       default:
         return FirebaseFailure(
-          message ?? 'Authentication failed. Please try again.',
+          message ?? FirebaseFailureStrings.authenticationFailed,
         );
     }
   }
