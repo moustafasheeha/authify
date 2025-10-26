@@ -1,5 +1,6 @@
 abstract class AppStrings {
   static const String appName = "Authify";
+  static const String welcomeAuthfiy = 'Welcome to Authify!';
 
   // 🔹 Login Screen
   static const String loginWelcome = 'Welcome Back 👋';
@@ -27,4 +28,6 @@ abstract class AppStrings {
   static const unexpectedError = 'Unexpected error occurred.';
   static const loginSuccess = 'Logged in successfully!';
   static const signOutError = 'Unexpected error while signing out.';
+  static const signOut = 'Sign Out';
+  static const signOutSuccess = 'Signed out successfully!';
 }
