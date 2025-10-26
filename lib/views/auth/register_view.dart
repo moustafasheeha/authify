@@ -1,6 +1,6 @@
 import 'package:authify/core/constants/app_colors.dart';
 import 'package:authify/views/auth/widgets/auth_container.dart';
-import 'package:authify/views/auth/widgets/auth_header.dart';
+import 'package:authify/views/auth/widgets/auth_banner.dart';
 import 'package:authify/views/auth/widgets/register_form.dart';
 import 'package:flutter/material.dart';
 
