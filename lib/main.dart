@@ -1,4 +1,5 @@
 import 'package:authify/core/bindings/auth_binding.dart';
+import 'package:authify/core/constants/app_transitions.dart';
 import 'package:authify/firebase_options.dart';
 import 'package:authify/routes/app_pages.dart';
 import 'package:authify/routes/app_routes.dart';
@@ -20,6 +21,8 @@ class MyApp extends StatelessWidget {
       initialBinding: AuthBinding(),
       initialRoute: AppRoutes.splash,
       getPages: AppPages.routes,
+      defaultTransition: AppTransitions.defaultTransition,
+      transitionDuration: AppTransitions.defaultDuration,
     );
   }
 }
