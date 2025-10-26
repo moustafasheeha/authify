@@ -1,3 +1,4 @@
+import 'package:authify/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AuthSwitchRow extends StatelessWidget {
@@ -22,7 +23,7 @@ class AuthSwitchRow extends StatelessWidget {
           onPressed: onTap,
           child: Text(
             actionText,
-            style: const TextStyle(color: Color(0xFF1565C0)),
+            style: const TextStyle(color: AppColors.primary),
           ),
         ),
       ],

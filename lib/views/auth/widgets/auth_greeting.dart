@@ -1,3 +1,4 @@
+import 'package:authify/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
 class AuthGreeting extends StatelessWidget { 
@@ -10,10 +11,10 @@ class AuthGreeting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final title = isLogin ? 'Welcome Back 👋' : 'Create Account ✨';
+    final title = isLogin ? AppStrings.loginWelcome : AppStrings.createAccount;
     final subtitle = isLogin
-        ? 'Sign in to continue'
-        : 'Join us and start your journey';
+        ? AppStrings.loginSubtitle
+        : AppStrings.registerSubtitle;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
