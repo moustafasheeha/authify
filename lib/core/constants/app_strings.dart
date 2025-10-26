@@ -18,4 +18,13 @@ abstract class AppStrings {
   static const String emailLabel = 'Email';
   static const String passwordLabel = 'Password';
   static const String confirmPasswordLabel = 'Confirm Password';
+
+  // AuthController strings
+  static const authStatusError = 'Authentication status error.';
+  static const success = 'Success';
+  static const accountCreated = 'Account created successfully!';
+  static const error = 'Error';
+  static const unexpectedError = 'Unexpected error occurred.';
+  static const loginSuccess = 'Logged in successfully!';
+  static const signOutError = 'Unexpected error while signing out.';
 }
