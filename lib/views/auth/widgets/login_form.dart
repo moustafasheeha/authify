@@ -1,4 +1,6 @@
+import 'package:authify/controllers/auth_controller.dart';
 import 'package:authify/core/constants/app_strings.dart';
+import 'package:authify/core/utils/app_validator.dart';
 import 'package:authify/core/widgets/app_text_field.dart';
 import 'package:authify/routes/app_routes.dart';
 import 'package:authify/views/auth/widgets/auth_bottun.dart';
@@ -15,7 +17,7 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-   bool hide = true;
+  bool hide = true;
 
   late GlobalKey<FormState> _formKey;
   late TextEditingController emailController;
@@ -28,6 +30,7 @@ class _LoginFormState extends State<LoginForm> {
     emailController = TextEditingController();
     passwordController = TextEditingController();
   }
+
   @override
   void dispose() {
     emailController.dispose();
@@ -35,37 +38,55 @@ class _LoginFormState extends State<LoginForm> {
     _formKey.currentState?.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    return Form(child: Column(
-      children: [
-        AuthGreeting(isLogin: true),
-        const SizedBox(height: 20),
-        AppTextField(label: AppStrings.emailLabel, controller: emailController),
-        const SizedBox(height: 20),
-        AppTextField(
-          controller: passwordController,
-          label:  AppStrings.passwordLabel,
-          obscure: hide,
-          suffix: IconButton(
-            onPressed: () => setState(() => hide = !hide),
-            icon: Icon(
-              hide ? Icons.visibility_off : Icons.visibility,
-              color: Colors.grey[600],
+    return Form(
+      child: Column(
+        children: [
+          AuthGreeting(isLogin: true),
+          const SizedBox(height: 20),
+          AppTextField(
+            controller: emailController,
+            label: AppStrings.emailLabel,
+            validator: (value) => AppValidator.validateEmail(value),
+          ),
+          const SizedBox(height: 20),
+          AppTextField(
+            controller: passwordController,
+            label: AppStrings.passwordLabel,
+            validator: (value) => AppValidator.validatePassword(value),
+            obscure: hide,
+            suffix: IconButton(
+              onPressed: () => setState(() => hide = !hide),
+              icon: Icon(
+                hide ? Icons.visibility_off : Icons.visibility,
+                color: Colors.grey[600],
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 20),
-        AuthButton(title: AppStrings.loginButton),
-        const SizedBox(height: 20),
-        AuthSwitchRow(
-          message: AppStrings.dontHaveAccount,
-          actionText: AppStrings.registerButton,
-          onTap: () {
-            Get.offNamed(AppRoutes.register);
-          },
-        ),
-      ],
-    ));
+          const SizedBox(height: 20),
+          AuthButton(
+            title: AppStrings.loginButton,
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                AuthController.to.signIn(
+                  email: emailController.text.trim(),
+                  password: passwordController.text.trim(),
+                );
+              }
+            },
+            ),
+          const SizedBox(height: 20),
+          AuthSwitchRow(
+            message: AppStrings.dontHaveAccount,
+            actionText: AppStrings.registerButton,
+            onTap: () {
+              Get.offNamed(AppRoutes.register);
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

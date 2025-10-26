@@ -6,6 +6,7 @@ class AuthController extends GetxController {
   final IAuthRepo _repo;
 
   AuthController(this._repo);
+   static AuthController get to => Get.find<AuthController>();
 
   final isLoading = false.obs;
   final isLoggedIn = false.obs;

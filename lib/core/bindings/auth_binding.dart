@@ -13,6 +13,6 @@ class AuthBinding extends Bindings {
     Get.lazyPut<IAuthRepo>(() => FirebaseAuthRepo(firebaseAuth));
     final repo = Get.find<IAuthRepo>();
 
-    Get.lazyPut<AuthController>(() => AuthController(repo));
+    Get.put( AuthController(repo), permanent: true);
   }
 }

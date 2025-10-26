@@ -1,4 +1,6 @@
+import 'package:authify/controllers/auth_controller.dart';
 import 'package:authify/core/constants/app_strings.dart';
+import 'package:authify/core/utils/app_validator.dart';
 import 'package:authify/core/widgets/app_text_field.dart';
 import 'package:authify/routes/app_routes.dart';
 import 'package:authify/views/auth/widgets/auth_bottun.dart';
@@ -30,6 +32,7 @@ class _RegisterFormState extends State<RegisterForm> {
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
   }
+
   @override
   void dispose() {
     emailController.dispose();
@@ -47,11 +50,16 @@ class _RegisterFormState extends State<RegisterForm> {
         children: [
           AuthGreeting(isLogin: false),
           const SizedBox(height: 20),
-          AppTextField(label: AppStrings.emailLabel, controller: emailController),
+          AppTextField(
+            controller: emailController,
+            label: AppStrings.emailLabel,
+            validator: (value) => AppValidator.validateEmail(value),
+          ),
           const SizedBox(height: 20),
           AppTextField(
             controller: passwordController,
             label: AppStrings.passwordLabel,
+            validator: (value) => AppValidator.validatePassword(value),
             obscure: hide,
             suffix: IconButton(
               onPressed: () => setState(() => hide = !hide),
@@ -65,6 +73,10 @@ class _RegisterFormState extends State<RegisterForm> {
           AppTextField(
             controller: confirmPasswordController,
             label: AppStrings.confirmPasswordLabel,
+            validator: (value) => AppValidator.validateConfirmPassword(
+              confirmedPassword: value ?? '',
+              password: passwordController.text,
+            ),
             obscure: hide,
             suffix: IconButton(
               onPressed: () => setState(() => hide = !hide),
@@ -75,7 +87,17 @@ class _RegisterFormState extends State<RegisterForm> {
             ),
           ),
           const SizedBox(height: 20),
-          AuthButton(title: AppStrings.registerButton),
+          AuthButton(
+            title: AppStrings.registerButton,
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                AuthController.to.signUp(
+                  email: emailController.text.trim(),
+                  password: passwordController.text.trim(),
+                );
+              }
+            },
+          ),
           const SizedBox(height: 20),
           AuthSwitchRow(
             message: AppStrings.alreadyHaveAccount,
